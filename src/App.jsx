@@ -6,6 +6,7 @@ import axios from 'axios';
 import Home from './Components/client/Home.jsx';
 import Nav from './Components/Nav';
 import Create from './Components/admin/Create';
+import MyOrders from './Components/Orders/MyOrders';
 
 //UPDATE
 // useEffect(()=>{
@@ -15,24 +16,6 @@ import Create from './Components/admin/Create';
 //   axios.put('http://localhost:3007/path/' + editData.id, editData, authConfig())
 //   .then(res => setRefresh(Date.now()));
 // }, [editData]);
-
-//CREATE
-// useEffect(()=>{
-//   if(newData === null){
-//     return;
-//   }
-//   axios.post('http://localhost:3007/path', newData, authConfig())
-//   .then(res => setRefresh(Date.now()));
-// }, [newData]);
-
-//DELETE
-// useEffect(() => {
-//   if (null === deleteData) {
-//       return;
-//   }
-//   axios.delete('http://localhost:3007/path/'+ deleteData.id, authConfig())
-//   .then(res => setRefresh(Date.now()));
-// }, [deleteData]);
 
 // const reList = data => {
 //   const d = new Map();
@@ -52,6 +35,14 @@ function App() {
 
   const [clothes, setClothes] = useState(null);
 
+  const [saveData, setSaveData] = useState(null);
+  const [deleteData, setDeleteData] = useState(null);
+
+  const [modalOrder, setModalOrder] = useState(null);
+  const [newOrder, setNewOrder] = useState(null);
+
+  const [refresh, setRefresh] = useState(Date.now());
+
 // GET
   useEffect(()=>{
     axios.get('http://localhost:3007/clothes')
@@ -59,12 +50,44 @@ function App() {
       setClothes(res.data);
     })
     .catch(_ => setClothes('error'));
-  }, []);
+  }, [refresh]);
+
+//CREATE
+useEffect(()=>{
+  if(saveData === null){
+    return;
+  }
+  axios.post('http://localhost:3007/clothes', saveData)
+  .then(res => setRefresh(Date.now()));
+}, [saveData]);
+
+//CREATE ORDER
+useEffect(()=>{
+  if(newOrder === null){
+    return;
+  }
+  axios.post('http://localhost:3007/orders', newOrder)
+  .then(res => setRefresh(Date.now()));
+}, [newOrder]);
+
+//DELETE
+useEffect(() => {
+  if (null === deleteData) {
+      return;
+  }
+  axios.delete('http://localhost:3007/clothes/'+ deleteData.id)
+  .then(res => setRefresh(Date.now()));
+}, [deleteData]);
 
   return (
     <BrowserRouter>
     <ClotheContext.Provider value={{
       clothes,
+      setSaveData,
+      setDeleteData,
+      setModalOrder,
+      modalOrder,
+      setNewOrder,
     }}>
       <div className="App">
         <header className="App-header">
@@ -72,6 +95,7 @@ function App() {
           <Routes>
             <Route path='/home' element={<Home />}></Route>
             <Route path='/home/clothes' element={<Create />}></Route>
+            <Route path='/home/orders' element={<MyOrders />}></Route>
           </Routes>
         </header>
       </div>
