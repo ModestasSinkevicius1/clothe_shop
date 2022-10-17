@@ -11,7 +11,7 @@ function List(){
             <h2 className="list-title">Clothes</h2>
             <div className="list-item">
               <span>ID</span>
-              <span className="list-header-header">Color</span>
+              <span className="list-header-color">Color</span>
               <span>Type</span>
               <span>Price</span>
             </div>

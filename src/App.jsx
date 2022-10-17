@@ -34,6 +34,7 @@ import MyOrders from './Components/Orders/MyOrders';
 function App() {
 
   const [clothes, setClothes] = useState(null);
+  const [orders, setOrders] = useState(null);
 
   const [saveData, setSaveData] = useState(null);
   const [deleteData, setDeleteData] = useState(null);
@@ -43,6 +44,8 @@ function App() {
 
   const [refresh, setRefresh] = useState(Date.now());
 
+  const [deleteOrder, setDeleteOrder] = useState(null);
+
 // GET
   useEffect(()=>{
     axios.get('http://localhost:3007/clothes')
@@ -50,6 +53,14 @@ function App() {
       setClothes(res.data);
     })
     .catch(_ => setClothes('error'));
+  }, [refresh]);
+
+  useEffect(()=>{
+    axios.get('http://localhost:3007/orders')
+    .then(res => {
+      setOrders(res.data);
+    })
+    .catch(_ => setOrders('error'));
   }, [refresh]);
 
 //CREATE
@@ -79,6 +90,14 @@ useEffect(() => {
   .then(res => setRefresh(Date.now()));
 }, [deleteData]);
 
+useEffect(() => {
+  if (null === deleteOrder) {
+      return;
+  }
+  axios.delete('http://localhost:3007/orders/'+ deleteOrder.id)
+  .then(res => setRefresh(Date.now()));
+}, [deleteOrder]);
+
   return (
     <BrowserRouter>
     <ClotheContext.Provider value={{
@@ -88,6 +107,8 @@ useEffect(() => {
       setModalOrder,
       modalOrder,
       setNewOrder,
+      orders,
+      setDeleteOrder,
     }}>
       <div className="App">
         <header className="App-header">

@@ -9,7 +9,7 @@ function List(){
     return(
         <div className="list">
             <h2 className="list-title">Clothes</h2>
-            <div className="list-header-container">
+            <div className="list-header-container list-item">
                 <span className="list-header">ID</span>
                 <span className="list-header">Color</span>
                 <span className="list-header">Type</span>

@@ -1,7 +1,31 @@
+/* NAV */
+
+nav{
+    background-color: #aaa7a0;
+    margin: 0 10px;
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-control a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.nav-link.active{
+    color: white;
+}
+
+/* LIST */
+
 .new-clothing-container,
 .list{
     margin: 10px;
-    background-color: rgb(220, 218, 214);
+    background-color: #dcdad6;
     border-radius: 5px;
     padding: 10px;
     box-shadow: 2px 2px 5px #000000a9;
@@ -57,6 +81,13 @@ label{
 
 /* ADMIN LIST ITEM */
 
+.list-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 .list-item{
     display: flex;
     align-items: center;
@@ -70,7 +101,6 @@ label{
     box-shadow: 1px 1px 5px #000000a9;
 }
 
-.list-header,
 .list-item span{
     margin: 10px;
     font-size: 16px;
@@ -79,12 +109,8 @@ label{
     background-color: white;
     border-radius: 50px;
     box-shadow: 1px 1px 2px #000000a9;
-    width: 50px;
-    text-align: center;
-}
-
-.list-header-color{
     width: 100px;
+    text-align: center;
 }
 
 .list-header-container{
@@ -94,7 +120,6 @@ label{
 .list-color-container{
     display: flex;
     justify-content: space-evenly;
-    width: 100px;
     background-color: white;
     border-radius: 50px;
     height: 30px;
@@ -102,6 +127,8 @@ label{
     box-shadow: 1px 1px 2px #000000a9;
     padding-left: 10px;
     padding-right: 10px;
+    margin: 10px;
+    width: 120px;
 }
 
 .list-color-display{
@@ -114,6 +141,7 @@ label{
     padding: 0;
     height: initial;
     box-shadow: none;
+    width: 70px;
 }
 
 /*MODAL ORDER*/
@@ -174,4 +202,16 @@ label{
 
 .textarea-container textarea{
     width: 99%;
+}
+
+/*MyOrder*/
+
+.myOrder-size{
+    text-transform: uppercase;
+}
+
+.list-item .myOrder-comment,
+.list-header.list-header-comment{
+    overflow-wrap: break-word;
+    width: 300px;
 }

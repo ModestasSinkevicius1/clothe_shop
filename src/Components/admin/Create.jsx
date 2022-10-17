@@ -6,8 +6,8 @@ import List from "./List";
 function Create(){
 
     const [color, setColor] = useState('#000000');
-    const [type, setType] = useState(null);
-    const [price, setPrice] = useState(null);
+    const [type, setType] = useState('pants');
+    const [price, setPrice] = useState('0');
 
     const { setSaveData } = useContext(ClotheContext);
 

@@ -4,18 +4,22 @@ import ListItem from "./ListItem";
 
 function List(){
 
-    const { clothes, setDeleteData } = useContext(ClotheContext);
+    const { setDeleteOrder, orders } = useContext(ClotheContext);
 
     return(
         <div className="list">
             <h2 className="list-title">Orders</h2>
-            <div className="list-header-container">
-                <span className="list-header">ID</span>
-                <span className="list-header">Size</span>
-                <span className="list-header">Comment</span>
-                <span className="list-header">Clothes info</span>
-            </div>
-            { clothes?.map(c => <ListItem key={c.id} clothing={c} setDeleteData={setDeleteData} />)}                      
+            <div className="list-container">
+                <div className="list-header-container list-item">
+                    <span className="list-header">ID</span>
+                    <span className="list-header">Size</span>
+                    <span className="list-header list-header-comment">Comment</span>
+                    <span className="list-header">Clothe type</span>
+                    <span className="list-header list-header-color">Color</span>
+                    <span className="list-header">Price</span>
+                </div>
+                {orders !== 'error' ? orders?.map(o => <ListItem key={o.id} order={o} setDeleteOrder={setDeleteOrder} />) : null}
+            </div>                      
         </div>
     );
 }
