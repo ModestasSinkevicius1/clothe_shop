@@ -1,17 +1,18 @@
 import { NavLink } from "react-router-dom";
 
 function Nav({status}) {
-
     return (       
         <nav>
             <div className="nav-control">
-                <NavLink end to="/home" className={ ({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Home</NavLink>      
-                <NavLink to="/home/clothes" className={ ({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Clothes</NavLink>
-                <NavLink to="/home/orders" className={ ({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>My Orders</NavLink>
+                {status === 2 || status === 3 ? <NavLink end to="/home" className={ ({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Home</NavLink>         : null}     
+                {status === 3 ? <NavLink to="/home/clothes" className={ ({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Clothes</NavLink>                  : null}
+                {status === 2 || status === 3 ? <NavLink to="/home/orders" className={ ({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>My Orders</NavLink> : null}
             </div>
             <div className="nav-control nav-credentials">
-                <NavLink end to="/login" className={ ({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Login</NavLink>
-                <span className="nav-user">User</span>
+                {status === 1 ? <NavLink end to="/login" className={ ({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Login</NavLink>                       : null}
+                {status !== 1 ? <NavLink end to="/logout" className={ ({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Logout</NavLink>                     : null}
+                {status === 2 ? <span className="nav-user">Client</span>                                                                                                : null}
+                {status === 3 ? <span className="nav-user">Admin</span>                                                                                                : null}
             </div>
         </nav>  
     );

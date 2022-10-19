@@ -25,7 +25,7 @@ function Order(){
     return(
         <div className="order">
             <div className="order-container">
-                <span className="btn-delete" onClick={() => setModalOrder(null)}>Delete</span>
+                <span className="btn-delete" onClick={() => setModalOrder(null)}>Exit</span>
                 <h2>Order</h2>
                 <div className="order-info-container">
                     <h3 className="order-info-title">Clothing info</h3>

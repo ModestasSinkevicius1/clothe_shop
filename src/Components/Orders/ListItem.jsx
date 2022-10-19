@@ -1,4 +1,20 @@
-function ListItem({ order, setDeleteOrder }){
+import { useState } from "react";
+import { useContext } from "react";
+import ClotheContext from "../../Context/ClothesContext";
+
+function ListItem({ order, setDeleteOrder, setUpdateOrder }){
+
+    const { status } = useContext(ClotheContext);
+
+    const [stage, setStage] = useState(order.status);
+    
+    const updateOrderStatus = () => {
+        setUpdateOrder({
+            id: order.id,
+            status: stage,
+        });
+    }
+
     return(
         <div className="list-item">
             <span>{order.id}.</span>
@@ -10,7 +26,22 @@ function ListItem({ order, setDeleteOrder }){
                 <div className="list-color-display" style={{backgroundColor: order.color}}></div>
             </div>     
             <span>{order.price}&euro;</span>
-            <button className="btn" onClick={() => setDeleteOrder(order)}>Delete</button>
+            {status === 3 ?
+            <select className="input-select myOrder-status" value={stage} onChange={e => setStage(e.target.value)}>
+                <option value={'Awaiting'}>Awaiting</option>
+                <option value={'Confirmed'}>Confirmed</option>
+                <option value={'Working'}>Working</option>
+                <option value={'Packaging'}>Packaging</option>
+                <option value={'Sent'}>Sent</option>
+                <option value={'Completed'}>Completed</option>
+            </select> :
+            <span>{order.status}</span>}
+            {status === 3 ? 
+                <div className="order-control">
+                    <button className="btn btn-order" onClick={() => updateOrderStatus(order)}>Update</button>
+                    <button className="btn btn-order" onClick={() => setDeleteOrder(order)}>Delete</button>
+                </div> 
+            : null}
         </div>
     );
 }

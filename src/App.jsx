@@ -4,18 +4,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Home from './Components/client/Home.jsx';
-import Nav from './Components/Nav';
 import Create from './Components/admin/Create';
 import MyOrders from './Components/Orders/MyOrders';
-
-//UPDATE
-// useEffect(()=>{
-//   if(editData === null){
-//     return;
-//   }
-//   axios.put('http://localhost:3007/path/' + editData.id, editData, authConfig())
-//   .then(res => setRefresh(Date.now()));
-// }, [editData]);
+import { authConfig } from './Functions/auth.js';
+import { LoginPage, LogoutPage, RequireAuth } from './Components/Auth/Auth';
+import ShowNav from './Components/ShowNav';
 
 // const reList = data => {
 //   const d = new Map();
@@ -43,12 +36,16 @@ function App() {
   const [newOrder, setNewOrder] = useState(null);
 
   const [refresh, setRefresh] = useState(Date.now());
+  const [refreshStatus, setRefreshStatus] = useState(Date.now());
 
   const [deleteOrder, setDeleteOrder] = useState(null);
+  const [updateOrder, setUpdateOrder] = useState(null);
+
+  const [status, setStatus] = useState(1);
 
 // GET
   useEffect(()=>{
-    axios.get('http://localhost:3007/clothes')
+    axios.get('http://localhost:3007/clothes', authConfig())
     .then(res => {
       setClothes(res.data);
     })
@@ -56,7 +53,7 @@ function App() {
   }, [refresh]);
 
   useEffect(()=>{
-    axios.get('http://localhost:3007/orders')
+    axios.get('http://localhost:3007/orders', authConfig())
     .then(res => {
       setOrders(res.data);
     })
@@ -68,7 +65,7 @@ useEffect(()=>{
   if(saveData === null){
     return;
   }
-  axios.post('http://localhost:3007/clothes', saveData)
+  axios.post('http://localhost:3007/clothes', saveData, authConfig())
   .then(res => setRefresh(Date.now()));
 }, [saveData]);
 
@@ -77,16 +74,25 @@ useEffect(()=>{
   if(newOrder === null){
     return;
   }
-  axios.post('http://localhost:3007/orders', newOrder)
+  axios.post('http://localhost:3007/orders', newOrder, authConfig())
   .then(res => setRefresh(Date.now()));
 }, [newOrder]);
+
+//UPDATE
+useEffect(()=>{
+  if(updateOrder === null){
+    return;
+  }
+  axios.put('http://localhost:3007/orders/' + updateOrder.id, updateOrder, authConfig())
+  .then(res => setRefresh(Date.now()));
+}, [updateOrder]);
 
 //DELETE
 useEffect(() => {
   if (null === deleteData) {
       return;
   }
-  axios.delete('http://localhost:3007/clothes/'+ deleteData.id)
+  axios.delete('http://localhost:3007/clothes/'+ deleteData.id, authConfig())
   .then(res => setRefresh(Date.now()));
 }, [deleteData]);
 
@@ -94,7 +100,7 @@ useEffect(() => {
   if (null === deleteOrder) {
       return;
   }
-  axios.delete('http://localhost:3007/orders/'+ deleteOrder.id)
+  axios.delete('http://localhost:3007/orders/'+ deleteOrder.id, authConfig())
   .then(res => setRefresh(Date.now()));
 }, [deleteOrder]);
 
@@ -109,14 +115,20 @@ useEffect(() => {
       setNewOrder,
       orders,
       setDeleteOrder,
+      refreshStatus,
+      status,
+      setStatus,
+      setUpdateOrder,
     }}>
       <div className="App">
         <header className="App-header">
-          <Nav />
+          <ShowNav />
           <Routes>
-            <Route path='/home' element={<Home />}></Route>
-            <Route path='/home/clothes' element={<Create />}></Route>
-            <Route path='/home/orders' element={<MyOrders />}></Route>
+            <Route path='/login' element={<LoginPage setRefreshStatus={setRefreshStatus} />}> </Route>
+            <Route path='/logout' element={<LogoutPage setRefreshStatus={setRefreshStatus} />}> </Route>
+            <Route path='/home' element={<RequireAuth role='user'><Home /></RequireAuth>}></Route>
+            <Route path='/home/clothes' element={<RequireAuth role='admin'><Create /></RequireAuth>}></Route>
+            <Route path='/home/orders' element={<RequireAuth role='user'><MyOrders /></RequireAuth>}></Route>
           </Routes>
         </header>
       </div>

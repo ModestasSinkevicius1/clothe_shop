@@ -1,4 +1,11 @@
+@import url('./Login.css');
+
 /* NAV */
+
+.App-header{
+    display: flex;
+    flex-direction: column;
+}
 
 nav{
     background-color: #aaa7a0;
@@ -103,13 +110,13 @@ label{
 
 .list-item span{
     margin: 10px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     padding: 5px 20px;
     background-color: white;
     border-radius: 50px;
     box-shadow: 1px 1px 2px #000000a9;
-    width: 100px;
+    width: 80px;
     text-align: center;
 }
 
@@ -128,7 +135,7 @@ label{
     padding-left: 10px;
     padding-right: 10px;
     margin: 10px;
-    width: 120px;
+    width: 100px;
 }
 
 .list-color-display{
@@ -210,8 +217,26 @@ label{
     text-transform: uppercase;
 }
 
+.myOrder-status{
+    width: 120px;
+    margin: 10px;
+    text-align: center;
+}
+
 .list-item .myOrder-comment,
 .list-header.list-header-comment{
     overflow-wrap: break-word;
-    width: 300px;
+    width: 160px;
 }
+
+.order-control{
+    display: flex;
+    flex-direction: row;
+}
+
+.btn-order{
+    margin: 5px;
+}
+
+/* LOGIN */
+

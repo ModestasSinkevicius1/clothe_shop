@@ -4,7 +4,7 @@ import ListItem from "./ListItem";
 
 function List(){
 
-    const { setDeleteOrder, orders } = useContext(ClotheContext);
+    const { setDeleteOrder, orders, setUpdateOrder } = useContext(ClotheContext);
 
     return(
         <div className="list">
@@ -17,8 +17,12 @@ function List(){
                     <span className="list-header">Clothe type</span>
                     <span className="list-header list-header-color">Color</span>
                     <span className="list-header">Price</span>
+                    <span className="list-header">Status</span>
                 </div>
-                {orders !== 'error' ? orders?.map(o => <ListItem key={o.id} order={o} setDeleteOrder={setDeleteOrder} />) : null}
+                {orders !== 'error' ? orders?.map(o => <ListItem key={o.id} order={o} 
+                                                    setDeleteOrder={setDeleteOrder} 
+                                                    setUpdateOrder={setUpdateOrder} />) 
+                : null}
             </div>                      
         </div>
     );

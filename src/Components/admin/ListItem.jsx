@@ -1,4 +1,5 @@
 function ListItem({ clothing, setDeleteData }){
+
     return(
         <div className="list-item">
             <span>{clothing.id}.</span>
