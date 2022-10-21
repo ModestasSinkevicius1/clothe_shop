@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import ClotheContext from "../../Context/ClothesContext";
+import close from '../../assets/img/x.svg';
 
 function Order(){
 
@@ -25,7 +25,7 @@ function Order(){
     return(
         <div className="order">
             <div className="order-container">
-                <span className="btn-delete" onClick={() => setModalOrder(null)}>Exit</span>
+                <img src={close} alt='Exit' className="btn-delete" onClick={() => setModalOrder(null)}></img>
                 <h2>Order</h2>
                 <div className="order-info-container">
                     <h3 className="order-info-title">Clothing info</h3>

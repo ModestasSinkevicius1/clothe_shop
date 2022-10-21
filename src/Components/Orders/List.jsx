@@ -9,6 +9,7 @@ function List(){
     return(
         <div className="list">
             <h2 className="list-title">Orders</h2>
+            {orders !== 'error' ?
             <div className="list-container">
                 <div className="list-header-container list-item">
                     <span className="list-header">ID</span>
@@ -19,11 +20,11 @@ function List(){
                     <span className="list-header">Price</span>
                     <span className="list-header">Status</span>
                 </div>
-                {orders !== 'error' ? orders?.map(o => <ListItem key={o.id} order={o} 
+                {orders?.map(o => <ListItem key={o.id} order={o} 
                                                     setDeleteOrder={setDeleteOrder} 
-                                                    setUpdateOrder={setUpdateOrder} />) 
-                : null}
-            </div>                      
+                                                    setUpdateOrder={setUpdateOrder} />)}
+            </div>
+            : <h3>Failed to get orders</h3>}                      
         </div>
     );
 }

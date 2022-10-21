@@ -7,7 +7,7 @@ import Nav from './Nav';
 
 function ShowNav() {
 
-    const {status, setStatus} = useContext(ClotheContext);
+    const {status, setStatus, setRefresh} = useContext(ClotheContext);
 
     const {refreshStatus} = useContext(ClotheContext);
 
@@ -15,8 +15,9 @@ function ShowNav() {
       axios.get('http://localhost:3007/login-check?role=admin', authConfig())
         .then(res => {
           setStatus(res.data.status);
+          setRefresh(Date.now());
         })
-    }, [refreshStatus, setStatus]);
+    }, [refreshStatus, setStatus, setRefresh]);
     return <Nav status={status} />
 }
 

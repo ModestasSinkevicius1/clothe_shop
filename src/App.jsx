@@ -119,6 +119,7 @@ useEffect(() => {
       status,
       setStatus,
       setUpdateOrder,
+      setRefresh,
     }}>
       <div className="App">
         <header className="App-header">
