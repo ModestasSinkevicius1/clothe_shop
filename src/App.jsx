@@ -47,7 +47,7 @@ function App() {
   useEffect(()=>{
     axios.get('http://localhost:3007/clothes', authConfig())
     .then(res => {
-      setClothes(res.data);
+      setClothes(res.data.map((d, i) => ({...d, show: true, row: i})))
     })
     .catch(_ => setClothes('error'));
   }, [refresh]);
@@ -108,6 +108,7 @@ useEffect(() => {
     <BrowserRouter>
     <ClotheContext.Provider value={{
       clothes,
+      setClothes,
       setSaveData,
       setDeleteData,
       setModalOrder,

@@ -10,7 +10,7 @@ function ListItem({ clothing }){
         <div className="card-item">
             <div className="card-image-container">
                 {clothing.image ?
-                <img src={clothing.image} alt={clothing.title}></img> :
+                <img src={clothing.image} alt={clothing.type}></img> :
                 <img src={noImage} alt='no imeg'></img>}
             </div>
             <div className="list-color-container">

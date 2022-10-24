@@ -10,7 +10,7 @@ function List() {
       <h2 className="list-title-home">Clothes</h2>
       {clothes !== "error" ? (
         <div className="card-container">
-          { clothes?.map(c => <ListItem key={c.id} clothing={c} />) }
+          { clothes?.map(c => c.show ? <ListItem key={c.id} clothing={c} /> : null) }
         </div>
       ) : (
         <h3>Failed to get clothes</h3>
