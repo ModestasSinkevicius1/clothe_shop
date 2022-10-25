@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { login, logout, authConfig } from "../../Functions/auth";
+import ShowNav from "../ShowNav";
+
 
 export function RequireAuth({ children, role }) {
     const [view, setView] = useState(<h2>Please wait...</h2>);
@@ -41,12 +43,15 @@ export function LoginPage({ setRefreshStatus }) {
       })
   }
   return (
+<>
+<ShowNav/>
     <div className="login-container">
       <h2>Login</h2>
       <div className="login-row"><label>Name: </label><input type="text" className="login-input-text" value={user} onChange={e => setUser(e.target.value)}></input></div>
       <div className="login-row"><label>Password: </label><input type="password" className="login-input-text" value={pass} onChange={e => setPass(e.target.value)}></input></div>
       <button onClick={doLogin} className='btn btn-login'>Login</button>
     </div>
+    </>
   );
 }
 
@@ -54,7 +59,7 @@ export function LogoutPage({ setRefreshStatus }) {
   useEffect(() => {
     logout();
   }, []);
-  setRefreshStatus(Date.now());
+  //setRefreshStatus(Date.now());
   return (
     <Navigate to="/login" replace />
   )

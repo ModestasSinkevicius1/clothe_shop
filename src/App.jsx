@@ -8,7 +8,6 @@ import Create from './Components/admin/Create';
 import MyOrders from './Components/Orders/MyOrders';
 import { authConfig } from './Functions/auth.js';
 import { LoginPage, LogoutPage, RequireAuth } from './Components/Auth/Auth';
-import ShowNav from './Components/ShowNav';
 
 // const reList = data => {
 //   const d = new Map();
@@ -46,21 +45,27 @@ function App() {
 
 // GET
   useEffect(()=>{
+    if(status === 1){
+        return;
+    }
     axios.get('http://localhost:3007/clothes', authConfig())
     .then(res => {
       setClothes(res.data.map((d, i) => ({...d, show: true, row: i})))
     })
     .catch(_ => setClothes('error'));
-  }, [refresh]);
+  }, [refresh, status]);
 
   useEffect(()=>{
+    if(status === 1){
+        return;
+    }
     axios.get('http://localhost:3007/orders', authConfig())
     .then(res => {
       setOrders(res.data);
       setStats(res.data.map(d => (d.price)));
     })
     .catch(_ => setOrders('error'));
-  }, [refresh]);
+  }, [refresh, status]);
 
 //CREATE
 useEffect(()=>{
@@ -127,7 +132,7 @@ useEffect(() => {
     }}>
       <div className="App">
         <header className="App-header">
-          <ShowNav />
+          {/* <ShowNav /> */}
           <Routes>
             <Route path='/login' element={<LoginPage setRefreshStatus={setRefreshStatus} />}> </Route>
             <Route path='/logout' element={<LogoutPage setRefreshStatus={setRefreshStatus} />}> </Route>
