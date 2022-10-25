@@ -95,6 +95,7 @@ input{
 .input-color{
     height: 30px;
     width: 30px;
+    min-width: 30px;
     border-radius: 50%;
 }
 
@@ -102,8 +103,12 @@ input{
 .input-text,
 .input-select{
     padding: 5px;
-    min-width: 80px;
+    min-width: 57px;
     font-weight: bold;
+}
+
+.input-text{
+    min-width: 20px;
 }
 
 .btn{
@@ -176,7 +181,7 @@ label{
 }
 
 .filter .search-input{
-    width: 500px;
+    width: 80%;
 }
 
 .filter-inputs{
@@ -187,7 +192,7 @@ label{
 }
 
 .filter-input-container .input-select{
-    width: 300px;
+    width: 80px;
 }
 
 /* ADMIN LIST ITEM */
@@ -209,6 +214,7 @@ label{
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
+    position: relative;
 }
 
 .list-title{
@@ -217,6 +223,7 @@ label{
     border-radius: 50px;
     display: inline-block;
     box-shadow: 1px 1px 5px #000000a9;
+    margin-right: 10px;
 }
 
 .list-item span{
@@ -270,6 +277,16 @@ label{
     height: initial;
     box-shadow: none;
     width: 70px;
+}
+
+.list-item-clothes .create-btn-top{
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
 }
 
 /*MODAL ORDER*/
@@ -360,5 +377,142 @@ label{
     margin: 5px;
 }
 
-/* LOGIN */
+.myOrder-header-type-second{
+    display: none;
+}
 
+/* STATS */
+
+.stats-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@media (max-width: 1250px){
+    .list-item span{
+        font-size: 12px;
+        margin: 2px;
+       
+    }
+    
+    .list-item .input-select,
+    .list-item .btn{
+        font-size: 12px;
+    }
+
+    .list-item .btn{
+        min-width: 20px;
+    }
+
+    .list-item .list-item-id,
+    .list-item .list-item-size{
+        width: 10px;
+    }
+    
+    /* Create */
+
+    .image-control .file-input{
+        width: 89px;
+    }
+
+    .new-clothing-container .btn{
+        font-size: 12px;
+    }
+
+    .list-item img{
+        width: 80px;
+    }
+
+    .list-item-clothes .btn{
+        display: none;
+    }
+
+    .list-item-clothes .create-btn-top{
+        display: block;
+    }
+}
+
+@media (max-width: 1200px){
+    .card-container{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 970px){
+    .card-container{
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+    }
+
+    .list-header.myOrder-header-status{
+        width: 50px;
+    }
+
+    .list-item .input-select{
+        width: 70px;
+    }
+}
+
+@media (max-width: 950px){
+    .list-item .myOrder-color-container{
+        font-size: 12px;
+        margin: 2px;
+        width: 14px;
+    }
+
+    .list-item .color-container-second{
+        display: flex;
+        width: 55px;
+        justify-content: center;
+    }
+
+    .list-header.myOrder-header-color{
+        width: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .list-item .myOrder-color-container span{
+        display: none;
+    }
+
+    .list-header.myOrder-header-type{
+        display: none;
+    }
+
+    .list-header.myOrder-header-type-second{
+        display: block;
+        width: 30px;
+    }
+
+    .list-item .myOrder-type{
+        width: 30px;
+    }
+}
+
+@media (max-width: 650px){
+    .card-container{
+        grid-template-columns: 1fr;
+        
+    }
+
+    .list-item .color-container-second{
+        display: none;
+    }
+
+    .list-item .myOrder-color-container{
+        font-size: 12px;
+        margin: 2px;
+        width: 14px;
+    }
+
+    .myOrder-comment,
+    .list-item .myOrder-color-container,
+    .list-item .myOrder-size,
+    .list-item .myOrder-header-size,
+    .list-header.list-header-comment,
+    .list-header.myOrder-header-color{
+        display: none;
+    }
+}

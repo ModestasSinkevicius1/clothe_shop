@@ -26,7 +26,6 @@ function Order(){
         <div className="order">
             <div className="order-container">
                 <img src={close} alt='Exit' className="btn-delete" onClick={() => setModalOrder(null)}></img>
-                <h2>Order</h2>
                 <div className="order-info-container">
                     <h3 className="order-info-title">Clothing info</h3>
                     <div className="list-item">

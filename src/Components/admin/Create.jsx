@@ -54,7 +54,7 @@ function Create(){
                         </div>
                         : null}
                     </div>
-                    <button className='btn' onClick={saveClothing}>Create</button>
+                    <button className='btn create-btn' onClick={saveClothing}>Create</button>
                 </div>
             </div>
             <List />

@@ -17,13 +17,15 @@ function ListItem({ order, setDeleteOrder, setUpdateOrder }){
 
     return(
         <div className="list-item">
-            <span>{order.id}.</span>
-            <span className="myOrder-size">{order.size}</span>
+            <span className="list-item-id">{order.id}.</span>
+            <span className="list-item-size myOrder-size">{order.size}</span>
             <span className="myOrder-comment">{order.comment}</span>
-            <span>{order.type}</span>
-            <div className="list-color-container">
-                <span>{order.color}</span>
-                <div className="list-color-display" style={{backgroundColor: order.color}}></div>
+            <span className="myOrder-type">{order.type}</span>
+            <div className="color-container-second">
+                <div className="list-color-container myOrder-color-container">
+                    <span>{order.color}</span>
+                    <div className="list-color-display" style={{backgroundColor: order.color}}></div>
+                </div>
             </div>     
             <span>{order.price}&euro;</span>
             {status === 3 ?

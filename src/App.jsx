@@ -28,6 +28,7 @@ function App() {
 
   const [clothes, setClothes] = useState(null);
   const [orders, setOrders] = useState(null);
+  const [stats, setStats] = useState(null);
 
   const [saveData, setSaveData] = useState(null);
   const [deleteData, setDeleteData] = useState(null);
@@ -56,6 +57,7 @@ function App() {
     axios.get('http://localhost:3007/orders', authConfig())
     .then(res => {
       setOrders(res.data);
+      setStats(res.data.map(d => (d.price)));
     })
     .catch(_ => setOrders('error'));
   }, [refresh]);
@@ -121,6 +123,7 @@ useEffect(() => {
       setStatus,
       setUpdateOrder,
       setRefresh,
+      stats,
     }}>
       <div className="App">
         <header className="App-header">
