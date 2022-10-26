@@ -43,7 +43,7 @@ function Filter(){
                         {maxPrice.map((p, i) => <option key={i} value={p}>{p} &euro;</option>)}
                     </select>
                 </div>
-                <button className="btn" onClick={filterItems}>Apply</button>
+                <button className="btn bg-light" onClick={filterItems}>Apply</button>
             </div>
         </div>
     )
