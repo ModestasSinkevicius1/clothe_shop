@@ -23,7 +23,7 @@ function Filter(){
     }
 
     return(
-        <div className="filter">
+        <div className="filter container">
             <div className="filter-search">
                 <input type="search" className="search-input input-text" placeholder="Search here..." value={search} onChange={e => setSearch(e.target.value)}></input>
             </div>

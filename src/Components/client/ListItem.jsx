@@ -7,7 +7,7 @@ function ListItem({ clothing }){
     const { setModalOrder } = useContext(ClotheContext);
 
     return(
-        <div className="col-md justify-self-center">
+        <div className="col-lg-4 col-md-5 col-sm-12 justify-content-center">
             <div className="card-item card text-center justify-content-center">
                 <div className="card-image-container card-img-top">
                     {clothing.image ?

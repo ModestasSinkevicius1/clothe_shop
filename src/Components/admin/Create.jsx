@@ -38,7 +38,7 @@ function Create(){
         <>
             <ShowNav />
             <div className="create">
-                <div className="new-clothing-container">
+                <div className="new-clothing-container container">
                     <h2>Create new clothing</h2>
                     <div className="new-clothing-container-inputs">
                         <input type='color' value={color} className="input-color" onChange={e => setColor(e.target.value)}></input>
@@ -57,7 +57,7 @@ function Create(){
                             </div>
                             : null}
                         </div>
-                        <button className='btn create-btn' onClick={saveClothing}>Create</button>
+                        <button className='btn create-btn bg-light' onClick={saveClothing}>Create</button>
                     </div>
                 </div>
                 <List />
