@@ -4,7 +4,7 @@ import ListItem from "./ListItem";
 
 function List(){
 
-    const { clothes, setDeleteData } = useContext(ClotheContext);
+    const { clothes, setModalDelete } = useContext(ClotheContext);
 
     return(
         <div className="list">
@@ -18,7 +18,7 @@ function List(){
                     <span className="list-header">Type</span>
                     <span className="list-header">Price</span>
                 </div>
-                { clothes?.map(c => <ListItem key={c.id} clothing={c} setDeleteData={setDeleteData} />)}
+                { clothes?.map(c => <ListItem key={c.id} clothing={c} setModalDelete={setModalDelete} />)}
             </div>
             : <h3>Failed to get clothes</h3>}                      
         </div>

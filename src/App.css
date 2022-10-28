@@ -1,4 +1,5 @@
 @import url('./Login.css');
+@import url('./Pagination.css');
 
 /* NAV */
 
@@ -43,6 +44,7 @@ nav{
     flex-direction: column;
     align-items: center;
     padding: 10px;
+    border-radius: 5px;
 }
 
 .card-image-container{
@@ -78,7 +80,11 @@ nav{
     background-color: #dcdad6;
     border-radius: 5px;
     padding: 10px;
-    box-shadow: 2px 2px 5px #000000a9;
+    box-shadow: 2px 2px 5px #000000a9; 
+}
+
+.list{
+    min-height: 100vh;
 }
 
 .new-clothing-container-inputs{
@@ -86,7 +92,8 @@ nav{
     align-items: center;
 }
 
-input{
+input,
+.input-select{
     margin: 10px;
     vertical-align:middle;
     box-shadow: 1px 1px 5px #000000a9;
@@ -103,7 +110,7 @@ input{
 .input-text,
 .input-select{
     padding: 5px;
-    min-width: 57px;
+    min-width: 80px;
     font-weight: bold;
 }
 
@@ -150,7 +157,7 @@ label{
     position: relative;
 }
 
-.image-preview span{
+.image-preview .remove-img{
     position: absolute;
     top: 0;
     right: 5px;
@@ -159,7 +166,7 @@ label{
     cursor: pointer;
 }
 
-.image-preview img{
+.image-preview img:last-of-type{
     width: 100%;
     height: 150px;
     object-fit: contain;
@@ -293,6 +300,15 @@ label{
     filter: invert(16%) sepia(100%) saturate(5930%) hue-rotate(357deg) brightness(92%) contrast(120%);
 }
 
+.create-btn{
+    margin-top: 25px;
+}
+
+.new-clothing-label-container{
+    display: flex;
+    flex-direction: column;
+}
+
 /*MODAL ORDER*/
 
 .order{
@@ -316,6 +332,12 @@ label{
     margin: 20px calc((100% - 800px)/2);
     padding: 10px;
     position: relative;
+}
+
+.delete-container{
+    height: 20vh;
+    width: 400px;
+    margin: 150px calc((100% - 400px)/2);
 }
 
 .order-container .input-select{
@@ -370,6 +392,28 @@ label{
 .list-header.list-header-comment{
     overflow-wrap: break-word;
     width: 160px;
+    min-height: 20px;
+}
+
+.list-container-result{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.list-result{
+    text-align: center;
+}
+
+.list-fail{
+    text-align: center;
+}
+
+.list-not-found-img{
+    width: 50%;
+    align-self: center;
+    box-shadow: 1px 1px 5px #000000a9;
 }
 
 .order-control{
@@ -459,6 +503,14 @@ label{
 }
 
 @media (max-width: 950px){
+    .input-text{
+        width: 60px;
+    }
+
+    .input-text-color{
+        display: none;
+    }
+
     .list-item .myOrder-color-container{
         font-size: 12px;
         margin: 2px;
@@ -493,9 +545,14 @@ label{
     .list-item .myOrder-type{
         width: 30px;
     }
+
+    .order-container{
+        width: 600px;
+        margin: 20px calc((100% - 600px)/2);
+    }
 }
 
-@media (max-width: 650px){
+@media (max-width: 800px){
     .card-container{
         grid-template-columns: 1fr;
         
@@ -518,5 +575,27 @@ label{
     .list-header.list-header-comment,
     .list-header.myOrder-header-color{
         display: none;
+    }
+
+    .list-item span{
+        width: 55px;
+    }
+
+    .order-container{
+        width: 400px;
+        margin: 20px calc((100% - 400px)/2);
+    }
+
+    .filter-inputs{
+        column-gap: 20px;
+    }
+
+    .image-preview{
+        margin: 0;
+        height: 120px;
+    }
+
+    .image-preview img:last-of-type{
+        width: 80%;
     }
 }

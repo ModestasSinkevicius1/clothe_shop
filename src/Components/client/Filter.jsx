@@ -4,7 +4,7 @@ import ClotheContext from "../../Context/ClothesContext";
 
 function Filter(){
 
-    const { setClothes } = useContext(ClotheContext);
+    const { setClothes, types } = useContext(ClotheContext);
 
     const maxPrice = [...Array(10)].map((p, i) => ({...p}, 10 * (i + 1)));
     const [price, setPrice] = useState('any');
@@ -12,9 +12,14 @@ function Filter(){
     const [search, setSearch] = useState('');
 
     const doFilter = (c) =>{
-        const regStr = new RegExp(`^${search}`);
-        if((c.type === type || type === 'any') && (c.price <= price || price === 'any') && (regStr.test(c.type) || search === ''))
-            return true;
+        try{
+            const regStr = new RegExp(`^${search.toLowerCase()}`);
+            if((c.type === type || type === 'any') && (c.price <= price || price === 'any') && (regStr.test(c.type) || search === ''))
+                return true;
+        }
+        catch{
+            return false;
+        }      
         return false;
     }
 
@@ -32,8 +37,7 @@ function Filter(){
                     <label>Type</label>
                     <select className="input-select" value={type} onChange={e => setType(e.target.value)}>
                         <option value={'any'}>Any</option>
-                        <option value={'pants'}>Pants</option>
-                        <option value={'skirt'}>Skirt</option>
+                        {types.map((t, i) => <option key={i} value={t.toLowerCase()}>{t}</option>)}
                     </select>
                 </div>
                 <div className="filter-input-container">

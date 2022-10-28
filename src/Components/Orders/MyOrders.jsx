@@ -1,3 +1,4 @@
+import Pagination from "../Pagination.jsx";
 import ShowNav from "../ShowNav";
 import List from "./List";
 
@@ -7,6 +8,7 @@ function MyOrders(){
             <ShowNav />
             <div className="my-orders">
                 <List />
+                <Pagination />
             </div>
         </>
     );

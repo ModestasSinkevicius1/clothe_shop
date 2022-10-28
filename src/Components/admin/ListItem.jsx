@@ -1,8 +1,8 @@
 import noImage from '../../assets/img/no-image.svg';
 import del from '../../assets/img/x.svg';
 
-function ListItem({ clothing, setDeleteData }){
-
+function ListItem({ clothing, setModalDelete }){
+    
     return(
         <div className="list-item list-item-clothes">
             <span>{clothing.id}.</span>
@@ -17,8 +17,8 @@ function ListItem({ clothing, setDeleteData }){
             </div>
             <span>{clothing.type}</span>
             <span>{clothing.price}&euro;</span>
-            <button className="btn" onClick={() => setDeleteData(clothing)}>Delete</button>
-            <img className="create-btn-top" src={del} alt="Delete" onClick={() => setDeleteData(clothing)}></img>
+            <button className="btn" onClick={() => setModalDelete(clothing)}>Delete</button>
+            <img className="create-btn-top" src={del} alt="Delete" onClick={() => setModalDelete(clothing)}></img>
         </div>
     );
 }

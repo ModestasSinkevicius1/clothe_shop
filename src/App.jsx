@@ -8,6 +8,7 @@ import Create from './Components/admin/Create';
 import MyOrders from './Components/Orders/MyOrders';
 import { authConfig } from './Functions/auth.js';
 import { LoginPage, LogoutPage, RequireAuth } from './Components/Auth/Auth';
+import types from './data/types.js';
 
 // const reList = data => {
 //   const d = new Map();
@@ -33,6 +34,7 @@ function App() {
   const [deleteData, setDeleteData] = useState(null);
 
   const [modalOrder, setModalOrder] = useState(null);
+  const [modalDelete, setModalDelete] = useState(null);
   const [newOrder, setNewOrder] = useState(null);
 
   const [refresh, setRefresh] = useState(Date.now());
@@ -42,6 +44,8 @@ function App() {
   const [updateOrder, setUpdateOrder] = useState(null);
 
   const [status, setStatus] = useState(1);
+
+  const [currentPage, setCurrentPage] = useState(1);
 
 // GET
   useEffect(()=>{
@@ -119,7 +123,9 @@ useEffect(() => {
       setSaveData,
       setDeleteData,
       setModalOrder,
+      setModalDelete,
       modalOrder,
+      modalDelete,
       setNewOrder,
       orders,
       setDeleteOrder,
@@ -129,6 +135,9 @@ useEffect(() => {
       setUpdateOrder,
       setRefresh,
       stats,
+      types,
+      setCurrentPage,
+      currentPage,
     }}>
       <div className="App">
         <header className="App-header">
