@@ -7,7 +7,7 @@ function List(){
     const { setDeleteOrder, orders, setUpdateOrder, stats, currentPage } = useContext(ClotheContext);
 
     return(
-        <div className="list">
+        <div className="list container">
             <div className="stats-container">
                 <h2 className="list-title">Orders</h2>         
                 <h2 className="list-title">Total spent: {stats?.reduce((a, b) => a + b, 0)}&euro;</h2>

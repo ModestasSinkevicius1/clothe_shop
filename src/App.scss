@@ -1,27 +1,20 @@
+@import "~bootstrap/scss/bootstrap";
 @import url('./Login.css');
 @import url('./Pagination.css');
 
 /* NAV */
 
-.App-header{
-    display: flex;
-    flex-direction: column;
-}
-
 nav{
     background-color: #aaa7a0;
-    margin: 0 10px;
     padding: 10px;
     border-radius: 0 0 5px 5px;
-    display: flex;
-    justify-content: space-between;
 }
 
 .nav-control a{
     text-decoration: none;
     color: black;
     font-weight: bold;
-    margin: 10px;
+    margin: 10px 0;
 }
 
 .nav-link.active{
@@ -30,27 +23,15 @@ nav{
 
 /* CARD */
 
-.card-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 20px;
-}
-
 .card-item{
     background-color: white;
-    width: 270px;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: 10px;
     border-radius: 5px;
+    width: 300px;
 }
 
 .card-image-container{
     background-color: dimgrey;
-    height: 250px;
-    width: 250px;
 }
 
 .card-image-container img{
@@ -76,7 +57,7 @@ nav{
 
 .new-clothing-container,
 .list{
-    margin: 10px;
+    margin: 10px auto;
     background-color: #dcdad6;
     border-radius: 5px;
     padding: 10px;
@@ -176,7 +157,7 @@ label{
 
 .filter{
     background-color: #c8c5c5;
-    margin: 10px;
+    margin: 10px auto;
     border-radius: 5px;
     padding: 5px;
     line-height: 50px;
@@ -211,11 +192,6 @@ label{
     align-items: flex-start;
 }
 
-.list-item{
-    display: flex;
-    align-items: center;
-}
-
 .list-item-clothes{
     background-color: #c8c5c5;
     margin: 10px 0;
@@ -241,22 +217,12 @@ label{
     background-color: white;
     border-radius: 50px;
     box-shadow: 1px 1px 2px #000000a9;
-    width: 80px;
-    text-align: center;
-}
-
-.list-header>.list-header-image{
-    width: 200px;
 }
 
 .list-item img{
     width: 200px;
     height: 200px;
     object-fit: contain;
-}
-
-.list-header-container{
-    display: flex;
 }
 
 .list-color-container{
@@ -287,12 +253,11 @@ label{
 }
 
 .list-item-clothes .create-btn-top{
-    display: none;
     position: absolute;
     top: 15px;
     right: 15px;
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
 }
 

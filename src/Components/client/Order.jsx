@@ -26,20 +26,20 @@ function Order(){
         <div className="order">
             <div className="order-container">
                 <img src={close} alt='Exit' className="btn-delete" onClick={() => setModalOrder(null)}></img>
-                <div className="order-info-container">
+                <div className="order-info-container text-center">
                     <h3 className="order-info-title">Clothing info</h3>
-                    <div className="list-item">
-                        <span className="list-header-header">Color</span>
-                        <span>Type</span>
-                        <span>Price</span>
+                    <div className="list-item row">
+                        <span className="list-header-header col">Color</span>
+                        <span className="col">Type</span>
+                        <span className="col">Price</span>
                     </div>
-                    <div className="order-info list-item">
-                        <div className="list-color-container">
+                    <div className="order-info list-item row">
+                        <div className="list-color-container col">
                             <span>{modalOrder.color}</span>
                             <div className="list-color-display" style={{backgroundColor: modalOrder.color}}></div>
                         </div>
-                        <span>{modalOrder.type}</span>
-                        <span>{modalOrder.price}&euro;</span>
+                        <span className="col">{modalOrder.type}</span>
+                        <span className="col">{modalOrder.price}&euro;</span>
                     </div>
                 </div>
                 <div>
@@ -59,8 +59,8 @@ function Order(){
                     </textarea>
                 </div>
                 <div className="order-btn-container">
-                    <button className="btn" onClick={() => setModalOrder(null)}>Cancel</button>
-                    <button className="btn" onClick={createOrder}>Buy</button>
+                    <button className="btn bg-light" onClick={() => setModalOrder(null)}>Cancel</button>
+                    <button className="btn bg-light" onClick={createOrder}>Buy</button>
                 </div>
             </div>
         </div>

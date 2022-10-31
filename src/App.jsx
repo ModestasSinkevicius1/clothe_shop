@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import ClotheContext from './Context/ClothesContext';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from 'react';

@@ -49,7 +49,7 @@ export function LoginPage({ setRefreshStatus }) {
       <h2>Login</h2>
       <div className="login-row"><label>Name: </label><input type="text" className="login-input-text" value={user} onChange={e => setUser(e.target.value)}></input></div>
       <div className="login-row"><label>Password: </label><input type="password" className="login-input-text" value={pass} onChange={e => setPass(e.target.value)}></input></div>
-      <button onClick={doLogin} className='btn btn-login'>Login</button>
+      <button onClick={doLogin} className='btn btn-login bg-light'>Login</button>
     </div>
     </>
   );

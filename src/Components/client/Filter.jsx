@@ -28,7 +28,7 @@ function Filter(){
     }
 
     return(
-        <div className="filter">
+        <div className="filter container">
             <div className="filter-search">
                 <input type="search" className="search-input input-text" placeholder="Search here..." value={search} onChange={e => setSearch(e.target.value)}></input>
             </div>
@@ -47,7 +47,7 @@ function Filter(){
                         {maxPrice.map((p, i) => <option key={i} value={p}>{p} &euro;</option>)}
                     </select>
                 </div>
-                <button className="btn" onClick={filterItems}>Apply</button>
+                <button className="btn bg-light" onClick={filterItems}>Apply</button>
             </div>
         </div>
     )

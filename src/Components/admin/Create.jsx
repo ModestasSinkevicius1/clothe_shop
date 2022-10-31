@@ -47,7 +47,7 @@ function Create(){
         <>
             <ShowNav />
             <div className="create">
-                <div className="new-clothing-container">
+                <div className="new-clothing-container container">
                     <h2>Create new clothing</h2>
                     <div className="new-clothing-container-inputs">
                         <div className="new-clothing-label-container">
