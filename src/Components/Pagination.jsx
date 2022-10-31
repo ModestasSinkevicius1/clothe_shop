@@ -7,8 +7,6 @@ function Pagination(){
 
   const pageInterval = 2;
 
-  const pageShow = 2;
-
   const maxPage = () => {
     return Math.ceil(orders?.length/10);
   }
@@ -19,9 +17,7 @@ function Pagination(){
     return;
   }
 
-  const pageCount = orders ? [...Array(10)] : [];
-
-  console.log(currentPage, pageInterval);
+  const pageCount = orders ? [...Array(maxPage())] : [];
 
   return (
     <div className="pagination">
@@ -32,11 +28,11 @@ function Pagination(){
       >
         1
       </span>
-      {currentPage > pageInterval ? <span>...</span> : null}
+      {currentPage > pageInterval + 1 ? <span>...</span> : null}
       {pageCount.map((_, i) =>
         i + 1 !== 1 &&
-        i + 1 < pageShow + currentPage &&
-        i + 1 > currentPage - pageShow ? (
+        i + 1 < pageInterval + currentPage &&
+        i + 1 > currentPage - pageInterval ? (
           <span
             className={currentPage === i + 1 ? "page active" : "page"}
             key={i}
@@ -46,12 +42,12 @@ function Pagination(){
           </span>
         ) : null
       )}
-      {currentPage < 10 - pageInterval ? <span>...</span> : null}
-      {currentPage + pageInterval <= 10 ? <span
-        className={currentPage === 10 ? "page active" : "page"}
-        onClick={() => sliceOrders(10)}
+      {currentPage < maxPage() - pageInterval ? <span>...</span> : null}
+      {currentPage + pageInterval <= maxPage() ? <span
+        className={currentPage === maxPage() ? "page active" : "page"}
+        onClick={() => sliceOrders(maxPage())}
       >
-        {10}
+        {maxPage()}
       </span>
       : null}
       <span onClick={() => sliceOrders(currentPage + 1)}>{">"}</span>

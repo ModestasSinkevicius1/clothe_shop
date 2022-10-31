@@ -21,6 +21,7 @@ function List(){
                         <div className="col-1"></div>
                     </div>
                 </div>
+           
                 { clothes?.map(c => <ListItem key={c.id} clothing={c} setModalDelete={setModalDelete} />)}
             </div>
             : <h3>Failed to get clothes</h3>}                      

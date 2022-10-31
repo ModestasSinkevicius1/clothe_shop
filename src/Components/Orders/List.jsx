@@ -5,9 +5,9 @@ import ListItem from "./ListItem";
 function List(){
 
     const { setDeleteOrder, orders, setUpdateOrder, stats, currentPage } = useContext(ClotheContext);
-
+    console.log(currentPage);
     return(
-        <div className="list container">
+        <div className="list myOrder-list">
             <div className="stats-container">
                 <h2 className="list-title">Orders</h2>         
                 <h2 className="list-title">Total spent: {stats?.reduce((a, b) => a + b, 0)}&euro;</h2>
@@ -24,7 +24,7 @@ function List(){
                     <span className="list-header">Price</span>
                     <span className="list-header myOrder-header-status">Status</span>
                 </div>
-                {orders?.slice(Math.min(Math.max((currentPage * 10) - 10, 0), 100), currentPage * 10)?.map(o => <ListItem key={o.id} order={o} 
+                {orders?.slice((currentPage - 1) * 10, currentPage * 10).map(o => <ListItem key={o.id} order={o} 
                                                     setDeleteOrder={setDeleteOrder} 
                                                     setUpdateOrder={setUpdateOrder} />)}
             </div>
