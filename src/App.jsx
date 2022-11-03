@@ -143,6 +143,7 @@ useEffect(() => {
         <header className="App-header">
           {/* <ShowNav /> */}
           <Routes>
+            <Route path='/' element={<LoginPage setRefreshStatus={setRefreshStatus} />}> </Route>
             <Route path='/login' element={<LoginPage setRefreshStatus={setRefreshStatus} />}> </Route>
             <Route path='/logout' element={<LogoutPage setRefreshStatus={setRefreshStatus} />}> </Route>
             <Route path='/home' element={<RequireAuth role='user'><Home /></RequireAuth>}></Route>
