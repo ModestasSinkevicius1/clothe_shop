@@ -3,12 +3,14 @@ import ClotheContext from "../Context/ClothesContext";
 
 function Pagination(){
 
-  const { orders, setCurrentPage, currentPage } = useContext(ClotheContext);
+  const { ordersCount, setCurrentPage, currentPage } = useContext(ClotheContext);
 
   const pageInterval = 2;
 
+  let orderRows = 0;
+
   const maxPage = () => {
-    return Math.ceil(orders?.length/10);
+    return Math.ceil(orderRows/10);
   }
 
   const sliceOrders = (pageNum) =>{
@@ -17,7 +19,11 @@ function Pagination(){
     return;
   }
 
-  const pageCount = orders ? [...Array(maxPage())] : [];
+  if(ordersCount){
+    orderRows = ordersCount[0].ordersRows; 
+  }
+
+  const pageCount = orderRows ? [...Array(maxPage())] : [];
 
   return (
     <div className="pagination">

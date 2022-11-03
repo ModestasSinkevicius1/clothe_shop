@@ -27,7 +27,7 @@ import types from './data/types.js';
 function App() {
 
   const [clothes, setClothes] = useState(null);
-  const [orders, setOrders] = useState(null);
+  
   const [stats, setStats] = useState(null);
 
   const [saveData, setSaveData] = useState(null);
@@ -47,6 +47,8 @@ function App() {
 
   const [currentPage, setCurrentPage] = useState(1);
 
+  const [ordersCount, setOrdersCount] = useState(null);
+
 // GET
   useEffect(()=>{
     if(status === 1){
@@ -61,15 +63,25 @@ function App() {
 
   useEffect(()=>{
     if(status === 1){
-        return;
+      return;
     }
-    axios.get('http://localhost:3007/orders', authConfig())
+    axios.get('http://localhost:3007/orders/count', authConfig())
     .then(res => {
-      setOrders(res.data);
-      setStats(res.data.map(d => (d.price)));
+      setOrdersCount(res.data);
     })
-    .catch(_ => setOrders('error'));
-  }, [refresh, status]);
+    .catch(_ => setOrdersCount('error'));
+  }, [refresh, status])
+
+  useEffect(()=>{
+    if(status === 1){
+      return;
+    }
+    axios.get('http://localhost:3007/orders/sum', authConfig())
+    .then(res => {
+      setStats(res.data);
+    })
+    .catch(_ => setStats('error'));
+  }, [refresh, status])
 
 //CREATE
 useEffect(()=>{
@@ -127,7 +139,6 @@ useEffect(() => {
       modalOrder,
       modalDelete,
       setNewOrder,
-      orders,
       setDeleteOrder,
       refreshStatus,
       status,
@@ -138,6 +149,8 @@ useEffect(() => {
       types,
       setCurrentPage,
       currentPage,
+      ordersCount,
+      refresh,
     }}>
       <div className="App">
         <header className="App-header">

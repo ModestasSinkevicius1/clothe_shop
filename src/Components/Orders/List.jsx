@@ -1,16 +1,39 @@
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import ClotheContext from "../../Context/ClothesContext";
 import ListItem from "./ListItem";
+import axios from "axios";
+import { authConfig } from '../../Functions/auth.js';
 
 function List(){
 
-    const { setDeleteOrder, orders, setUpdateOrder, stats, currentPage } = useContext(ClotheContext);
-    console.log(currentPage);
+    const { setDeleteOrder, setUpdateOrder, stats, status, currentPage, refresh } = useContext(ClotheContext);
+    
+    const [orders, setOrders] = useState(null);
+
+    console.log(orders?.length, currentPage - 1);
+
+    useEffect(()=>{
+        if(status === 1){
+            return;
+        }
+        axios.get(`http://localhost:3007/orders/?page=${currentPage - 1}`, authConfig())
+        .then(res => {
+          setOrders(res.data);
+        })
+        .catch(_ => setOrders('error'));
+    }, [refresh, status, currentPage]);
+
+    if(!orders){
+        return <div><h1>Please wait...</h1></div>
+    }
+    console.log(stats);
+
     return(
         <div className="list myOrder-list">
             <div className="stats-container">
                 <h2 className="list-title">Orders</h2>         
-                <h2 className="list-title">Total spent: {stats?.reduce((a, b) => a + b, 0)}&euro;</h2>
+                <h2 className="list-title">Total spent: {stats[0].ordersSum}&euro;</h2>
             </div>
             {orders !== 'error' ?
             <div className="list-container">
@@ -24,7 +47,7 @@ function List(){
                     <span className="list-header">Price</span>
                     <span className="list-header myOrder-header-status">Status</span>
                 </div>
-                {orders?.slice((currentPage - 1) * 10, currentPage * 10).map(o => <ListItem key={o.id} order={o} 
+                {orders?.map(o => <ListItem key={o.id} order={o} 
                                                     setDeleteOrder={setDeleteOrder} 
                                                     setUpdateOrder={setUpdateOrder} />)}
             </div>
